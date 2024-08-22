@@ -1,0 +1,6 @@
+Archipelago
+db/
+uploads/
+config.yaml
+*.sfc
+.env

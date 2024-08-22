@@ -1,0 +1,49 @@
+services:
+  # To run without HTTPS support, simply comment out "nginx" and "acme" 
+  # and uncomment port "4751" from archipelago
+  nginx:
+    image: nginxproxy/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - 4750:4750  # External port from which the web UI will be reachable
+    environment:
+      HTTPS_PORT: "4750"  # Internal port listening to HTTPS traffic
+    volumes:
+      - certs:/etc/nginx/certs
+      - html:/usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    restart: unless-stopped
+  acme:
+    image: nginxproxy/acme-companion
+    container_name: nginx-proxy-acme
+    volumes_from:
+      - nginx
+    volumes:
+      - acme:/etc/acme.sh
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    env_file: .env
+    restart: unless-stopped
+  archipelago:
+    build: .
+    container_name: archipelago
+    expose:
+      - "4751"  # Needs to be exposed and match "VIRTUAL_PORT" for proxy to work
+    ports:
+      # - 4751:4751
+      - 50000-50100:50000-50100
+    env_file: .env
+    environment:
+      VIRTUAL_PORT: "4751"
+      HTTPS_METHOD: "nohttp"
+    volumes:
+      - ./db:/db
+      - ./uploads:/uploads
+      - ./config.yaml:/Archipelago/config.yaml
+      # Used to download the sprites, comment it out if not needed
+      - "./Zelda no Densetsu - Kamigami no Triforce (Japan).sfc:/Archipelago/Zelda no Densetsu - Kamigami no Triforce (Japan).sfc"
+    restart: unless-stopped
+
+volumes:
+  certs:
+  html:
+  acme:

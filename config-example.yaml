@@ -1,0 +1,17 @@
+# Secret key for broswer session, all user content will be lost if this is changed
+SECRET_KEY: "SOME_SECRET_KEY"
+
+# Port to run the web UI on, must match what is in the archipelago service in the docker-compose.yaml file
+PORT: 4751
+
+# Domain used for some generated files, must match the domain used in the .env file
+HOST_ADDRESS: "hostname.tld"
+
+# Folder for uploads, this is referenced in the docker-compose.yaml to be mounted as a volume
+UPLOAD_FOLDER: "/uploads"
+
+# Database file path, referenced in the docker-compose.yaml to be mounted as a volume
+PONY:
+  provider: "sqlite"
+  filename: "/db/ap.db3"
+  create_db: true
