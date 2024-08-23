@@ -3,4 +3,5 @@ db/
 uploads/
 config.yaml
 *.sfc
+*.z64
 .env
