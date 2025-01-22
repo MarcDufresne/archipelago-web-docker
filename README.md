@@ -6,8 +6,8 @@ This repo contains a base to host an Archipelago Web Host using Docker Compose a
 
 1. Clone [Archipelago](https://github.com/ArchipelagoMW/Archipelago/) next to this file. 
    1. `git clone https://github.com/ArchipelagoMW/Archipelago.git`
-   2. This project has been tested and built with release 0.5.0, so it is suggested to 
-      checkout the `0.5.0` tag. 
+   2. This project has been tested and built with release 0.5.1, so it is suggested to 
+      checkout the latest `0.5.1` tag. 
 2. If you plan on using the AlttP sprites, you need to provide the ROM 
    `Zelda no Densetsu - Kamigami no Triforce (Japan).sfc` and place it next to this file.
 3. Run the `init.sh` to create the necessary directories and config files.
