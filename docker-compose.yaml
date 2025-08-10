@@ -12,6 +12,7 @@ services:
       - certs:/etc/nginx/certs
       - html:/usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./custom-nginx.conf:/etc/nginx/vhost.d/home.m0rk.space:ro
     restart: unless-stopped
   acme:
     image: nginxproxy/acme-companion
@@ -31,6 +32,9 @@ services:
     ports:
       # - 4751:4751
       - 50000-50100:50000-50100
+    dns:
+      - 1.1.1.1
+      - 1.0.0.1
     env_file: .env
     environment:
       VIRTUAL_PORT: "4751"
@@ -39,10 +43,14 @@ services:
       - ./db:/db
       - ./uploads:/uploads
       - ./config.yaml:/Archipelago/config.yaml
+      - ./custom_worlds:/Archipelago/custom_worlds
       # Used to download the sprites, comment it out if not needed
-      - "./Zelda no Densetsu - Kamigami no Triforce (Japan).sfc:/Archipelago/Zelda no Densetsu - Kamigami no Triforce (Japan).sfc"
-      # Needed to generate OoT games
-      - "./The Legend of Zelda - Ocarina of Time.z64:/Archipelago/The Legend of Zelda - Ocarina of Time.z64"
+      - "./roms/Zelda no Densetsu - Kamigami no Triforce (Japan).sfc:/Archipelago/Zelda no Densetsu - Kamigami no Triforce (Japan).sfc"
+      # Needed to generate some games
+      - "./roms/The Legend of Zelda - Ocarina of Time.z64:/Archipelago/The Legend of Zelda - Ocarina of Time.z64"
+      - "./roms/Secret of Evermore (USA).sfc:/Archipelago/Secret of Evermore (USA).sfc"
+      - "./roms/dk64.z64:/Archipelago/dk64.z64"
+      - "./roms/Super Mario World (USA).sfc:/Archipelago/Super Mario World (USA).sfc"
     restart: unless-stopped
 
 volumes:

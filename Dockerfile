@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM python:3.12-slim
 
 RUN apt update \
   && apt install -y git tk build-essential \
@@ -12,7 +12,7 @@ ADD Archipelago Archipelago
 
 WORKDIR /Archipelago
 
-RUN find . -name "requirements.txt" -exec xargs pip install -r {} \; \
+RUN find . -name "requirements.txt" -exec xargs pip install --no-cache-dir -r {} \; \
   && python ModuleUpdate.py -y -f
 
 # Port range for Archipelago rooms

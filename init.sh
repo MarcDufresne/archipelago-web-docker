@@ -4,6 +4,8 @@ cd "$(dirname "$0")" || exit
 
 mkdir -p db
 mkdir -p uploads
+mkdir -p custom_worlds
+mkdir -p roms
 
 if [[ ! -f "config.yaml" ]]; then
   cp config-example.yaml config.yaml
