@@ -51,6 +51,10 @@ services:
       - "./roms/Secret of Evermore (USA).sfc:/Archipelago/Secret of Evermore (USA).sfc"
       - "./roms/dk64.z64:/Archipelago/dk64.z64"
       - "./roms/Super Mario World (USA).sfc:/Archipelago/Super Mario World (USA).sfc"
+      - "./roms/Lufia II - Rise of the Sinistrals (USA).sfc:/Archipelago/Lufia II - Rise of the Sinistrals (USA).sfc"
+      - "./roms/Legend of Zelda, The - Link's Awakening DX (USA, Europe) (SGB Enhanced).gbc:/Archipelago/Legend of Zelda, The - Link's Awakening DX (USA, Europe) (SGB Enhanced).gbc"
+      - "./roms/Donkey Kong Country (USA).sfc:/Archipelago/Donkey Kong Country (USA).sfc"
+      - "./roms/Paper Mario (USA).z64:/Archipelago/Paper Mario (USA).z64"
     restart: unless-stopped
 
 volumes:
